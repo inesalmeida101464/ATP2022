@@ -1,0 +1,62 @@
+modo = input ("""Escolhe o modo de jogo (press 1 or 2)""" 
+"""|| 1- O utilizador adivinha o número || 2- A máquina adivinha o número ||""")
+import random 
+if modo == "1" :
+    sorteio = random.randint (0,100)
+    num= int(input("Tenta adivinhar o número, entre 0 e 100, que a máquina gerou"))
+    print("A tua primeira tentativa é o número", num)
+    count1 = 1
+    count2 = 0
+    while num != sorteio :
+        if (sorteio > num) :
+            print(">> O número que a máquina gerou é superior!!")
+            print()
+            num = int(input("Tenta um número superior!"))
+            print ("Tentaste o número:", num)
+            count1 = count1 + 1
+
+        elif (sorteio < num) :
+            print(">> O número que a máquina gerou é inferior!!")
+            print()
+            num = int(input("Tenta um número inferior!"))
+            print("Tentaste o número:", num)
+            count2 = count2 + 1
+
+    if num == sorteio :
+        print("Acertaste o número que a máquina gerou depois de", count1+count2 , "tentativas.")
+    
+
+if modo == "2" :
+    utilizador= int(input("Insira um número, entre 0 e 100, e deixe a máquina adivinhar!"))
+    sorteio2= random.randint(0,100)
+    print("A 1ª tentativa da máquina foi o número", sorteio2 )
+    print()
+    min = 0
+    max = 100
+    count1 = 1
+    count2 = 0
+    print (" O número que pensou foi o", sorteio2, "?" )
+    resp= input("Responda Sim, Maior, Menor ")
+
+    while (sorteio2 != utilizador ) :
+
+        if resp == "Menor" or resp== "menor" :
+            max = sorteio2
+            print(">>O número que o utilizador escolheu é inferior, a máquina precisa de mais uma tentativa ")
+            print()
+            sorteio2 =int((max+min)/2)
+            print("O número que pensou foi o", sorteio2, "?" )
+            resp = input("Responda Sim, Maior, Menor ")
+            count1 = count1+1
+            
+        elif resp == "Maior" or resp == "maior" :
+            min = sorteio2
+            print(">>O número que o utilizador gerou é superior, a máquina precisa de mais uma tentativa")
+            print()
+            sorteio2 = int((max+min)/2)
+            print("O número que pensou foi o", sorteio2, "?")
+            resp = input("Responda Sim, Maior, Menor ")
+            count2 = count2+1
+           
+    if resp == "Sim" or resp == "sim":
+        print("A máquina acertou o número que escolheste depois de", count1+count2, "tentativas")
